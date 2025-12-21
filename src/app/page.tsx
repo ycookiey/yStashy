@@ -21,7 +21,7 @@ export default async function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-surface-border bg-background-dark py-8">
+      <footer className="mt-auto border-t border-surface-border bg-surface dark:bg-surface-dark py-8">
         <div className="flex flex-col items-center justify-center gap-4 text-center">
           <p className="text-slate-600 text-xs">
             © {new Date().getFullYear()} Stash. Zero-latency bookmarking.
