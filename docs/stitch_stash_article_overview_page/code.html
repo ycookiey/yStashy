@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stash: Article Overview Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2badee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111c22",
+                        "surface-dark": "#1a262d",
+                        "surface-border": "#233c48",
+                        "text-muted": "#92b7c9",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111c22;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #233c48;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2badee;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 border-b border-gray-200 dark:border-surface-border bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="layout-container flex justify-center px-4 sm:px-8">
+<div class="flex w-full max-w-[1200px] items-center justify-between py-4">
+<div class="flex items-center gap-2 select-none cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl">bolt</span>
+<h1 class="text-xl font-black tracking-tight text-slate-900 dark:text-white">Stash</h1>
+</div>
+<div class="flex items-center gap-4">
+<!-- Logged in state example -->
+<div class="hidden sm:flex items-center gap-3">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-gray-100 dark:hover:bg-surface-border text-slate-500 dark:text-text-muted transition-colors" title="Settings">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-blue-600 ring-2 ring-white dark:ring-surface-border cursor-pointer overflow-hidden" data-alt="User avatar with gradient">
+<!-- Avatar Image Placeholder -->
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_lIajhQIxR_446fHPvfwiuv8d47WpwEcFmyNjaDDF3W5y-1GXzhFLaUIw5xmai5O6RbmkinZGTOFqBg9kas287zZB-zDyd1H0u_fC_4QKoB7wxluhRld1DVYjA73cK5BXIYdaobpM6g35Ma1RUN5Vce4-zxwGMkvNkVsR7N2-2ES0xFLNJiHDXX0p9XJm-FwnfdmzjG1VIoKy7KrIVflfMUKxwPPQLTQtwy7DxQJDjW0HRnDU373VxK1nSuY4kt_ZMq9Z7Fba0u8"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col items-center w-full px-4 sm:px-8 py-8">
+<!-- Input Section (Admin/User Action) -->
+<section class="w-full max-w-[720px] mb-12 animate-fade-in-up">
+<div class="flex flex-col gap-4 text-center mb-6">
+<h2 class="text-2xl sm:text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-text-muted">
+                    Stash a new link
+                </h2>
+</div>
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative flex items-center bg-white dark:bg-surface-dark rounded-lg p-1.5 shadow-xl border border-gray-200 dark:border-surface-border">
+<div class="pl-3 pr-2 text-slate-400 dark:text-text-muted">
+<span class="material-symbols-outlined text-xl">link</span>
+</div>
+<input aria-label="URL Input" class="flex-1 bg-transparent border-none focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-base py-2.5" placeholder="Paste URL to stash..." type="url"/>
+<button class="bg-primary hover:bg-blue-500 text-white dark:text-[#111c22] font-bold py-2 px-6 rounded-md transition-all transform active:scale-95 shadow-lg shadow-blue-500/20">
+                        Stash
+                    </button>
+</div>
+</div>
+<div class="mt-3 flex gap-4 justify-center text-xs text-slate-500 dark:text-slate-500 font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">bolt</span> Instant Save</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">offline_bolt</span> Offline Access</span>
+</div>
+</section>
+<!-- Articles Grid -->
+<section class="w-full max-w-[1200px]">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">library_books</span>
+                    Your Stash
+                </h3>
+<div class="flex gap-2">
+<button class="p-1.5 rounded hover:bg-gray-200 dark:hover:bg-surface-border text-slate-500 dark:text-slate-400 transition-colors" title="Grid View">
+<span class="material-symbols-outlined text-xl">grid_view</span>
+</button>
+<button class="p-1.5 rounded hover:bg-gray-200 dark:hover:bg-surface-border text-slate-500 dark:text-slate-400 transition-colors" title="List View">
+<span class="material-symbols-outlined text-xl">view_list</span>
+</button>
+</div>
+</div>
+<!-- Grid Container -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<article class="group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-surface-border overflow-hidden hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
+<div class="relative aspect-video bg-gray-100 dark:bg-black w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="React code on a computer screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDtw6PCL9e1uFJebTwNK-pxxuh281-gqcteVGdbGBjuoFX0Dpgc7NIJUJXEo7qmYAieL2e3m4OPeMZZT1VyIDY95eGWL0SAHoNQtSRnmjNdbhrypGKZKbFdHN8JH5CTarP5xG4ebZDLhr-aTTmvPN4UmA49GS0YZqDHp_4jmztKX__zrO1V1HGRsuXSmcH2R4LBIzxyNEdEUh42H8yv8SdF7638wh-KG7KGyrQ361R8hKxyoKgYwIBEjp8UQCTXV2J1DFknCtBP2MU");'></div>
+<div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-black/50 backdrop-blur-sm hover:bg-red-500 text-white p-1.5 rounded-full transition-colors" title="Archive">
+<span class="material-symbols-outlined text-sm">archive</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<a class="block group-hover:text-primary transition-colors" href="#">
+<h4 class="text-base font-bold leading-snug text-slate-900 dark:text-white line-clamp-2 mb-2">
+                                Optimizing React Server Components for Performance
+                            </h4>
+</a>
+<div class="mt-auto flex items-center gap-2">
+<img alt="Vercel Icon" class="w-4 h-4 rounded-full opacity-70 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD36f5adB1EGYFIBrq1P-hTy-r1vo5pbgQc2fe_U1fcqZZYWfjAJRZvVtV_1HKTt-rUZK09pgCvT2g6bvaMeT0h6VVTgZQXyV5_LPRiLMWn8qP2H1E2efBnZXS9y-7Va-2Zx7Ab0Wxr2Y1AWRaCFuTUf0LuPNLxANoZf2rtHsRrHAGxUBQY1OSCAGptQhQqb4vZd34oUhpz7BBAFG7y6kgo38kqn8bfwS_HlJJG0Y0WbUlPF6GqNKKAPoF3kJJQ9dqk6N5t8ZitwK4"/>
+<span class="text-xs font-medium text-slate-500 dark:text-text-muted truncate">vercel.com</span>
+<span class="mx-1 text-slate-300 dark:text-gray-700">•</span>
+<span class="text-xs text-slate-400 dark:text-slate-600">2h ago</span>
+</div>
+</div>
+</article>
+<!-- Card 2 (Fallback Pattern) -->
+<article class="group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-surface-border overflow-hidden hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
+<div class="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-surface-border to-background-dark flex items-center justify-center" data-alt="Abstract geometric dark pattern placeholder">
+<span class="material-symbols-outlined text-white/10 text-6xl group-hover:text-primary/20 transition-colors">image_not_supported</span>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<a class="block group-hover:text-primary transition-colors" href="#">
+<h4 class="text-base font-bold leading-snug text-slate-900 dark:text-white line-clamp-2 mb-2">
+                                The Future of AI in Modern Interface Design
+                            </h4>
+</a>
+<div class="mt-auto flex items-center gap-2">
+<div class="w-4 h-4 rounded-full bg-white flex items-center justify-center text-[10px] font-bold text-black">M</div>
+<span class="text-xs font-medium text-slate-500 dark:text-text-muted truncate">medium.com</span>
+<span class="mx-1 text-slate-300 dark:text-gray-700">•</span>
+<span class="text-xs text-slate-400 dark:text-slate-600">5h ago</span>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-surface-border overflow-hidden hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
+<div class="relative aspect-video bg-gray-100 dark:bg-black w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Minimalist coffee cup on table" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDOTbN3h-3htKxMG3UFAhLbGDte8zJFWFEawNeU20TWlwNIRqBcYgwj962yWxHq5Zg3nhVv4C9jJp9aGLwgGqdeTdLhbAUjCn8sd0bZo20vfsEuO7xe9x2r3QbTRDReNqz9rs1oaBd6R78Xb0J-oUPaMkwxWIlkvwSrPo2AyA4Tk4dQH3RzQkrTBdPA3hVCtD1PFGMpY6dQiBlLknyLPN2g-lu8wJi3MBpIFCRG0nte9WC1vRAWMCLZ6Mo5_GWjhaC5zLqo7Psj7Qk");'></div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<a class="block group-hover:text-primary transition-colors" href="#">
+<h4 class="text-base font-bold leading-snug text-slate-900 dark:text-white line-clamp-2 mb-2">
+                                The Slow Living Manifesto: Finding Calm in Chaos
+                            </h4>
+</a>
+<div class="mt-auto flex items-center gap-2">
+<img alt="Kinfolk Icon" class="w-4 h-4 rounded-full opacity-70 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrX6TV5IYRKLIcRq-o4R6BaEtDk8dAaWlH5WW6u-RvoEimWZwHy2jfhm0W_oQMOz-SxgOXeLcg_V1TC0cKsRhKgljgdnnlEITG2YOoZplXoTtVA3FubmsJirqBXsFKkibKjzwKo7bPdqmM0AORM0ZRsmynJ4beZshDngCe3dBkPx_q_Tt90ToOuT1rvgctPkriV8X9OsLuoAIWGZ8lIWRG_-9XDHLJTjxiwKlaSgfg1QeN-Eda3Lzdtef3ajYUK70KLk7Osy6V7BE"/>
+<span class="text-xs font-medium text-slate-500 dark:text-text-muted truncate">kinfolk.com</span>
+<span class="mx-1 text-slate-300 dark:text-gray-700">•</span>
+<span class="text-xs text-slate-400 dark:text-slate-600">1d ago</span>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-surface-border overflow-hidden hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
+<div class="relative aspect-video bg-gray-100 dark:bg-black w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Financial data charts on a screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtFeEHCyKil3zM7XrvgASTf0JTB_cMhWhvePVuc8c47EgH7Vu_KRaHIOe74R4HoXXrycuJNkLSJZP-CpR6Hi58N_YWLpccs1XgGeLGSmiyMyeULvVzeR8AUJ_EXpSTmVZzq6u-S_rqAx65dPK1CaI_QeCUuhCGU78ipE4r51M4FOVnhaN77xFSZWUiRDmkWptk1uX6bI4ajprXG5ZhYGDY06RZl8QnzAL0Q0Q825QGS5-UJDo-qci-lxntZvx3XOBB7-mbwS9vXS4");'></div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<a class="block group-hover:text-primary transition-colors" href="#">
+<h4 class="text-base font-bold leading-snug text-slate-900 dark:text-white line-clamp-2 mb-2">
+                                Q3 Global Financial Markets Report 2023
+                            </h4>
+</a>
+<div class="mt-auto flex items-center gap-2">
+<img alt="Bloomberg Icon" class="w-4 h-4 rounded-full opacity-70 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb2d78KnjDD0ABf76O6BGH3631PBYDxGAmwqJnCC8DQ-lybNmJ44xYg96DLD8Sl_WwYtDHGg6NtxhizUqLZNiyrlBUw8s0N4ow2nWfq8xFQdNj9UAd0rJ_lvdRqKm007gWfvD03ttYV8mBXbv46gvsYjT0P9N5F40x7Whbgkjv1gFG3kPE8kcPPWgggkHjOO40FaKmlIzS8RlMJC9vmEiL9dndaXDtB8ujuK5Tq21SMTNIZSoxm_Nf67Vsy-fshQdAOhM37i_Yfyg"/>
+<span class="text-xs font-medium text-slate-500 dark:text-text-muted truncate">bloomberg.com</span>
+<span class="mx-1 text-slate-300 dark:text-gray-700">•</span>
+<span class="text-xs text-slate-400 dark:text-slate-600">2d ago</span>
+</div>
+</div>
+</article>
+<!-- Card 5 (Long Title Test) -->
+<article class="group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-surface-border overflow-hidden hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
+<div class="relative aspect-video bg-gray-100 dark:bg-black w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Computer chip macro shot" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC-4HmHUpk-78wLGZBmSk30L8_l-LMSPHgHNslImy0swee_5u-KPLg9f1dVRWeg9t_4A7gYphwm-HQojs4GiPbwzwZ1lmZtNHqAOKNJKReq4c4XqCF_BjJaRW02ku_m8J3-H_xgAr-KwDNcgGj_RmYT55OAPfMPMFgz7a0Vg3YlVp1CZb-bh4ILkOc_8RYgjwZfTb4Gb8FfAWzAyvKKuWzWOSaSMgWP5THKPOcXBakF--OCuxIoWAJOlX_diE3laCjVQS2suRDyFwA");'></div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<a class="block group-hover:text-primary transition-colors" href="#">
+<h4 class="text-base font-bold leading-snug text-slate-900 dark:text-white line-clamp-2 mb-2">
+                                Understanding the Complexities of Hardware Acceleration in Modern Browsers
+                            </h4>
+</a>
+<div class="mt-auto flex items-center gap-2">
+<img alt="Ars Technica Icon" class="w-4 h-4 rounded-full opacity-70 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD22EEe6snBL1GO7iVKY2omrX2ABpN6YjfjdBSL6v0YPdaW0W8i5UHc_Ei0YmgLM3gf9nqA5gqkHyLs6cQuunIQZaQCsKUTBiTbuDh8K8bUxzD6q4cOEwfxn1_PGGLlLl6WsqCnH2yTUQmT3ZBKIse8ao62EXrKNs38o6_OMkvk2MOkVtJdBqKkel1R0BBlRNVBMR8GpiobKGt3g4HjV6652SF9srgl56fFJBoQQHYpjoru269KLWFKdQv2K89wqV7xy9zRhhQgu2g"/>
+<span class="text-xs font-medium text-slate-500 dark:text-text-muted truncate">arstechnica.com</span>
+<span class="mx-1 text-slate-300 dark:text-gray-700">•</span>
+<span class="text-xs text-slate-400 dark:text-slate-600">3d ago</span>
+</div>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-surface-border overflow-hidden hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
+<div class="relative aspect-video bg-gray-100 dark:bg-black w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Coding syntax on screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCi6Z6YCQmjwYuwjq7I48QLuqcAykkzMj6I3l3HjHg48leEXMH4LJPVG_6uhHK1Ji3SJq3XXrsCLHmbx0XUd-4ol2bMiqCJObiW5KrsmzUrM5C4TUeDoNA72QjcNc_FaXUFMF3iqp-sYN3_AoZiUxTGX3KSZnsJjjvgD9AFtQzSRGC69JwLuq1eRb8Aay_PU_mQ1lNrMCDftYdX2NN6DFK455647ec-GLrKNcKgakRmHjzGqIXAlmLqeIsf2eVPDEXz4K2G46CuL0E");'></div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<a class="block group-hover:text-primary transition-colors" href="#">
+<h4 class="text-base font-bold leading-snug text-slate-900 dark:text-white line-clamp-2 mb-2">
+                                10 CSS Tricks You Need To Know
+                            </h4>
+</a>
+<div class="mt-auto flex items-center gap-2">
+<img alt="CSS Tricks Icon" class="w-4 h-4 rounded-full opacity-70 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3V-qiMlMdowoQT0o5LPr20X6ZpEylm7D3AARe0qk3R_g2QQwIeeN7ohudfziSGOVyWDgmCe8UyLlyEdw6BZIZ6-BTAfgKqBRJbEM2NatypT5u-_q36YCQmjgKsydTh8dExoI8QqN0UJBHHZSxiPDnudpmvEAKHpxc4XkxBRkUXKS5DcQ0X-ZTC9plYZEa0_aJYOVF2aDXBmw3uVvN2rpDCDhKdIfOLavumuYejvvAtxaQtip2p3DYStnOdwmAdKAorruuWThMmA0"/>
+<span class="text-xs font-medium text-slate-500 dark:text-text-muted truncate">css-tricks.com</span>
+<span class="mx-1 text-slate-300 dark:text-gray-700">•</span>
+<span class="text-xs text-slate-400 dark:text-slate-600">1w ago</span>
+</div>
+</div>
+</article>
+</div>
+<!-- Load More Trigger -->
+<div class="flex justify-center mt-12 mb-8">
+<button class="flex items-center gap-2 px-6 py-2 rounded-full border border-gray-300 dark:border-surface-border hover:bg-gray-100 dark:hover:bg-surface-border text-slate-600 dark:text-text-muted text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+                    Load more articles
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="mt-auto border-t border-gray-200 dark:border-surface-border bg-white dark:bg-background-dark py-8">
+<div class="layout-container flex flex-col items-center justify-center gap-4 text-center">
+<div class="flex gap-6 text-sm">
+<a class="text-slate-500 dark:text-text-muted hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="text-slate-500 dark:text-text-muted hover:text-primary transition-colors" href="#">Terms</a>
+<a class="text-slate-500 dark:text-text-muted hover:text-primary transition-colors" href="#">Open Source</a>
+</div>
+<p class="text-slate-400 dark:text-slate-600 text-xs">© 2023 Stash Inc. Zero-latency bookmarking.</p>
+</div>
+</footer>
+</body></html>
