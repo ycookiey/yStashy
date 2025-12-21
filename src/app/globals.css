@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* Custom properties from design reference */
+:root {
+  --primary: #2badee;
+  --background-light: #f6f7f8;
+  --background-dark: #111c22;
+  --surface-dark: #1a262d;
+  --surface-border: #233c48;
+  --text-muted: #92b7c9;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-background-light: var(--background-light);
+  --color-background-dark: var(--background-dark);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-border: var(--surface-border);
+  --color-text-muted: var(--text-muted);
+  --font-display: 'Inter', sans-serif;
+}
+
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #111c22;
+}
+::-webkit-scrollbar-thumb {
+  background: #233c48;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2badee;
+}
+
+/* Dark mode by default */
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--background-dark);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* Utility for line clamping */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
