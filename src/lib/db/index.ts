@@ -1,5 +1,5 @@
 import { drizzle } from 'drizzle-orm/libsql';
-import { createClient, type Client } from '@libsql/client';
+import { createClient, type Client } from '@libsql/client/web';
 import * as schema from './schema';
 
 function getClient(): Client | null {

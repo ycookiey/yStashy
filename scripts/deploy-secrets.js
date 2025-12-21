@@ -11,7 +11,10 @@ if (!envConfig) {
   process.exit(1);
 }
 
-const projectName = 'stash';
+const projectName = 'ystashy';
+
+// Add Cloudflare specific build config
+envConfig['NPM_CONFIG_LEGACY_PEER_DEPS'] = 'true';
 
 console.log(`Deploying secrets to Cloudflare Pages project: ${projectName}`);
 
