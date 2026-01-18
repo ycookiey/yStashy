@@ -11,8 +11,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Stash - Personal Read-Later App",
+  title: "yStashy - Personal Read-Later App",
   description: "Save and manage web articles with ease. A zero-latency bookmarking app.",
+  metadataBase: new URL('https://stash.ycookiey.com'),
+  keywords: ["read later", "bookmark", "offline reading", "yStashy", "stash"],
+  authors: [{ name: "ycookiey" }],
 };
 
 export default function RootLayout({
