@@ -63,40 +63,46 @@ export function ArticleCard({ article, isAdmin }: ArticleCardProps) {
 
       {/* Admin Actions */}
       {isAdmin && (
-        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button
-            onClick={() => setShowMenu(!showMenu)}
-            className="bg-black/50 backdrop-blur-sm hover:bg-black/70 text-white p-1.5 rounded-full transition-colors"
-            disabled={isDeleting}
-          >
-            <span className="material-symbols-outlined text-sm">more_vert</span>
-          </button>
-          {showMenu && (
-            <div className="absolute right-0 top-full mt-1 bg-white dark:bg-surface-dark rounded-lg shadow-xl border border-gray-200 dark:border-surface-border py-1 min-w-[150px] z-10">
-              <button
-                onClick={() => handleStatusChange('read')}
-                className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-surface-border flex items-center gap-2"
-              >
-                <span className="material-symbols-outlined text-base">check_circle</span>
-                Mark as Read
-              </button>
-              <button
-                onClick={() => handleStatusChange('archived')}
-                className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-surface-border flex items-center gap-2"
-              >
-                <span className="material-symbols-outlined text-base">archive</span>
-                Archive
-              </button>
-              <hr className="my-1 border-gray-200 dark:border-surface-border" />
-              <button
-                onClick={handleDelete}
-                className="w-full px-3 py-2 text-left text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-2"
-              >
-                <span className="material-symbols-outlined text-base">delete</span>
-                Delete
-              </button>
-            </div>
+        <div className="absolute top-2 right-2 flex items-center gap-1">
+          {/* Mark as Read ボタン — 常に表示 (unread時のみ) */}
+          {article.status === 'unread' && (
+            <button
+              onClick={() => handleStatusChange('read')}
+              className="bg-black/50 backdrop-blur-sm hover:bg-green-600 text-white p-1.5 rounded-full transition-colors"
+              title="Mark as Read"
+            >
+              <span className="material-symbols-outlined text-sm">check_circle</span>
+            </button>
           )}
+          {/* 三点メニュー — 常に表示 */}
+          <div className="relative">
+            <button
+              onClick={() => setShowMenu(!showMenu)}
+              className="bg-black/50 backdrop-blur-sm hover:bg-black/70 text-white p-1.5 rounded-full transition-colors"
+              disabled={isDeleting}
+            >
+              <span className="material-symbols-outlined text-sm">more_vert</span>
+            </button>
+            {showMenu && (
+              <div className="absolute right-0 top-full mt-1 bg-white dark:bg-surface-dark rounded-lg shadow-xl border border-gray-200 dark:border-surface-border py-1 min-w-[150px] z-10">
+                <button
+                  onClick={() => handleStatusChange('archived')}
+                  className="w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-surface-border flex items-center gap-2"
+                >
+                  <span className="material-symbols-outlined text-base">archive</span>
+                  Archive
+                </button>
+                <hr className="my-1 border-gray-200 dark:border-surface-border" />
+                <button
+                  onClick={handleDelete}
+                  className="w-full px-3 py-2 text-left text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-2"
+                >
+                  <span className="material-symbols-outlined text-base">delete</span>
+                  Delete
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       )}
 
