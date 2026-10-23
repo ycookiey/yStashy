@@ -16,7 +16,6 @@ function getClient(): Client | null {
 
 const client = getClient();
 
-// Create a type-safe db object that handles missing client
 export const db = client ? drizzle(client, { schema }) : null;
 
 export function getDb() {

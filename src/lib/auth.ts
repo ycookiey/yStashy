@@ -16,7 +16,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async signIn({ profile }) {
-      // Only allow the admin user to sign in
       if (ADMIN_GITHUB_ID && profile?.id?.toString() !== ADMIN_GITHUB_ID) {
         return false;
       }

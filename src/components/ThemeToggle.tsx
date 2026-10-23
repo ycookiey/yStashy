@@ -12,7 +12,8 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className="w-9 h-9" />; // Placeholder
+    // The theme is unknown during server rendering; render a box of the same size to avoid a hydration mismatch
+    return <div className="w-9 h-9" />;
   }
 
   return (

@@ -2,6 +2,12 @@
   "name": "stash-app",
   "version": "0.1.0",
   "private": true,
+  "description": "Self-hosted read-later bookmark app for one person, built with Next.js, Turso and Auth.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ycookiey/yStashy.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

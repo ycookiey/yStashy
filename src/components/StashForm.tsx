@@ -17,22 +17,20 @@ export function StashForm() {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Extract URLs using regex to handle any separators (spaces, commas, newlines, text)
+    // The input may be any pasted text, such as a chat log, so pick the URLs out of it
     const urlPattern = /https?:\/\/[^\s,"'<>|`]+|www\.[^\s,"'<>|`]+/g;
     const matches = input.match(urlPattern);
 
     if (!matches || matches.length === 0) return;
 
-    // Normalize and remove duplicates
     const urls = Array.from(new Set(matches.map(u => {
-      // Add https protocol if missing (for www. starts)
       return u.startsWith('www.') ? `https://${u}` : u;
     })));
 
     setIsProcessing(true);
     setStatus({ total: urls.length, current: 0, success: 0, fails: [] });
 
-    // Process sequentially to avoid overwhelmed server resource / timeouts
+    // One at a time, not in parallel, so that the server is not overloaded and requests do not time out
     for (let i = 0; i < urls.length; i++) {
       const url = urls[i];
       const result = await stashUrl(url);
@@ -43,7 +41,7 @@ export function StashForm() {
           ...prev,
           current: i + 1,
           success: result.success ? prev.success + 1 : prev.success,
-          fails: result.success ? prev.fails : [...prev.fails, url] // Keep valid URL in fails list (maybe add reason?)
+          fails: result.success ? prev.fails : [...prev.fails, url]
         };
       });
     }
@@ -95,12 +93,11 @@ export function StashForm() {
         </div>
       </form>
       
-      {/* Status & Results */}
       {status && !isProcessing && (
         <div className={`mt-4 p-4 rounded-lg border text-sm ${
            status.fails.length === 0 
            ? 'bg-green-500/10 border-green-500/20 text-green-400' 
-           : 'bg-amber-500/10 border-amber-500/20 text-amber-500' // Mixed results
+           : 'bg-amber-500/10 border-amber-500/20 text-amber-500'
         }`}>
           <div className="flex items-center gap-2 font-bold mb-1">
              <span className="material-symbols-outlined text-lg">
