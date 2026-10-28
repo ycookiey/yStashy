@@ -8,7 +8,6 @@ A self-hosted read-later app for one person. Paste text that contains links, and
 - The title and image come from the page's Open Graph tags. Without `og:title`, the page's `<title>` is used
 - Mark a link as read, archive it or delete it
 - Sign in with GitHub. Only the account set in `ADMIN_GITHUB_ID` can add or change links
-- Light and dark themes. The system setting is used until you switch
 
 ## Requirements
 
