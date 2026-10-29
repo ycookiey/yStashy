@@ -40,7 +40,6 @@ export function ArticleCard({ article, isAdmin }: ArticleCardProps) {
 
   return (
     <article className="group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-surface-border overflow-hidden hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
-      {/* Image */}
       <a
         href={article.url}
         target="_blank"
@@ -61,10 +60,9 @@ export function ArticleCard({ article, isAdmin }: ArticleCardProps) {
         )}
       </a>
 
-      {/* Admin Actions */}
+      {/* Always rendered, not only on hover, so that keyboard link-hint browser extensions can reach the buttons */}
       {isAdmin && (
         <div className="absolute top-2 right-2 flex items-center gap-1">
-          {/* Mark as Read ボタン — 常に表示 (unread時のみ) */}
           {article.status === 'unread' && (
             <button
               onClick={() => handleStatusChange('read')}
@@ -74,7 +72,6 @@ export function ArticleCard({ article, isAdmin }: ArticleCardProps) {
               <span className="material-symbols-outlined text-sm">check_circle</span>
             </button>
           )}
-          {/* 三点メニュー — 常に表示 */}
           <div className="relative">
             <button
               onClick={() => setShowMenu(!showMenu)}
@@ -106,7 +103,6 @@ export function ArticleCard({ article, isAdmin }: ArticleCardProps) {
         </div>
       )}
 
-      {/* Content */}
       <div className="p-4 flex flex-col flex-1">
         <a
           href={article.url}

@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
 
-// Load env vars
 dotenv.config({ path: '.env.local' });
 
 const url = process.env.TURSO_DATABASE_URL;
@@ -29,7 +28,7 @@ async function main() {
   console.log('-------------------');
 
   try {
-    // Split by semicolon to handle multiple statements if any (though usually one create table)
+    // execute() runs one statement per call
     const statements = sql.split(';').filter((s) => s.trim().length > 0);
 
     for (const statement of statements) {

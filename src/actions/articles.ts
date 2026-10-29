@@ -19,13 +19,10 @@ export async function stashUrl(url: string): Promise<{ success: boolean; error?:
   }
 
   try {
-    // Validate URL
     new URL(url);
 
-    // Scrape OGP data
     const ogpData = await scrapeOgp(url);
 
-    // Insert into database
     const db = getDb();
     await db.insert(articles).values({
       id: generateId(),

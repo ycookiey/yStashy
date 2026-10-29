@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# yStashy
 
-## Getting Started
+A self-hosted read-later app for one person. Paste text that contains links, and yStashy saves each link with the page's title and preview image, shown as a grid of cards.
 
-First, run the development server:
+## Features
+
+- Paste any text, such as a list or a chat log. Every `http://`, `https://` and `www.` URL in it is saved. A URL that is already saved, or whose page cannot be fetched, is listed as failed instead
+- The title and image come from the page's Open Graph tags. Without `og:title`, the page's `<title>` is used
+- Mark a link as read, archive it or delete it
+- Sign in with GitHub. Only the account set in `ADMIN_GITHUB_ID` can add or change links
+
+## Requirements
+
+- Node.js 20 or later
+- A [Turso](https://turso.tech/) database
+- A [GitHub OAuth app](https://github.com/settings/developers). Set its callback URL to `<site URL>/api/auth/callback/github`, such as `http://localhost:3000/api/auth/callback/github` for local use
+
+## Setup
+
+Create `.env.local` in the repository root:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+TURSO_DATABASE_URL=<URL from `turso db show <database> --url`>
+TURSO_AUTH_TOKEN=<token from `turso db tokens create <database>`>
+AUTH_SECRET=<random string, such as the output of `openssl rand -base64 32`>
+GITHUB_CLIENT_ID=<OAuth app client ID>
+GITHUB_CLIENT_SECRET=<OAuth app client secret>
+ADMIN_GITHUB_ID=<your numeric GitHub user ID, from `gh api users/<login> --jq .id`>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then install the dependencies, create the table and start the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm ci
+npx drizzle-kit migrate
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open http://localhost:3000 and sign in with the GitHub account set in `ADMIN_GITHUB_ID`.
 
-## Learn More
+## Notes
 
-To learn more about Next.js, take a look at the following resources:
+- The list of saved links is public. Anyone who opens the site sees it without signing in, and `robots.txt` allows search engines to crawl it
+- The site URL `https://stash.ycookiey.com` is written in `src/app/layout.tsx`, `src/app/robots.ts`, `src/app/sitemap.ts` and the User-Agent in `src/lib/scraper.ts`. Replace it with your own URL before you deploy
+- If `ADMIN_GITHUB_ID` is not set, any GitHub account can sign in, but no one can add or change links
+- The app connects to the database with the web client of libSQL, which accepts `libsql:`, `https:`, `http:`, `wss:` and `ws:` URLs but not `file:`
+- The pages run on the Edge runtime. `wrangler.toml` and `npm run pages:build` are set up for Cloudflare Pages with `@cloudflare/next-on-pages`, which does not work reliably on Windows
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm ci
+npm run build
+```
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[MIT License](LICENSE)
